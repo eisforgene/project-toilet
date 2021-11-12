@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const toiletSchema = new Schema({
+    username: {
+        type: String,
+        require: true
+    },
     overallRating: {
         type: Number,
         required: true,
@@ -43,4 +47,4 @@ const toiletSchema = new Schema({
 
 const Toilet = new model('Toilet', toiletSchema)
 
-module.exports = { Toilet };
+module.exports = Toilet;

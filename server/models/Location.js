@@ -2,9 +2,10 @@ const { Schema, model } = require('mongoose');
 
 const locationSchema = new Schema({
     location: {
-        type: Number,
+        type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique: true
       },
     toilets: [{
         type: Schema.Types.ObjectId,
