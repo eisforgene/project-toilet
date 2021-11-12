@@ -1,19 +1,29 @@
-import React from 'react';
+import React from "react";
 
 const Navbar = () => {
-    return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
-        <div class="container">
-            <a class="navbar-brand" href="#!">Toilet SOS</a>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#signup">Sign Up</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#login">Login</a></li>
-                </ul>
-            </div>
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light static-top">
+      <div className="container">
+        <a className="navbar-brand" href="#!">
+          Toilet SOS
+        </a>
+        <div className="collapse navbar-collapse" id="navbarResponsive">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item mx-0 mx-lg-1">
+              <a className="nav-link py-3 px-0 px-lg-3 rounded" href="#signup">
+                Sign Up
+              </a>
+            </li>
+            <li className="nav-item mx-0 mx-lg-1">
+              <a className="nav-link py-3 px-0 px-lg-3 rounded" href="#login">
+                Login
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
-    )
-}
+  );
+};
 
 export default Navbar;
