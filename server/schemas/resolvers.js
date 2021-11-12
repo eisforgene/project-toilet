@@ -36,6 +36,33 @@ const resolvers = {
         const token = signToken(user);
 
         return{ token, user }
+    },
+    updateUser: async ( parent, args, context ) => {
+        
+        if (context.user) {
+            const newMe = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { ...args },
+            { new: true }
+        )
+        
+        return newMe;
+        }
+
+        throw new AuthenticationError('You need to be logged in')
+    },
+    updatePassword: async (parent, args, context) => {
+        if (context.user) {
+            const newPassword = await User.findOne(
+                {_id: context.user._id},
+            )
+            newPassword.password = args.password
+            await newPassword.save()
+
+            return await User.findOne({_id: context.user._id})
+        }
+        
+        throw new AuthenticationError('You need to be logged in')
     }
   }
 };

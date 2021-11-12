@@ -38,7 +38,8 @@ const typeDefs = gql`
     }
     type Mutation {
         addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
-        updateUser(firstName: String, lastName: String, email: String, username: String, password: String): User
+        updateUser(firstName: String, lastName: String, email: String, username: String): User
+        updatePassword(password: String!): User
         addToilet(overallRating: Int!, location: String!, genderNeutral: Boolean!, cleanliness: Int!, changingTable: Boolean!, handicapAccessible: Int!, toiletPaper: Boolean!, keys: Boolean!, comment: String!): Toilet
         updateToilet(overallRating: Int, location: String, genderNeutral: Boolean, cleanliness: Int, changingTable: Boolean, handicapAccessible: Int, toiletPaper: Boolean, keys: Boolean, comment: String): Toilet
         login(username: String!, password: String!): Auth
