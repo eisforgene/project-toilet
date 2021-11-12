@@ -17,6 +17,17 @@ const resolvers = {
                     .populate('toilets')
             
         return user;
+      },
+      me: async(parents, args, context) => {
+          if (context.user) {
+              const me = await User.findOne({_id: context.user._id})
+                    .select('-__v -password')
+                    .populate('toilets')
+            
+            return me;
+          }
+
+          throw new AuthenticationError('Not logged in');
       }
   },
   Mutation: {
