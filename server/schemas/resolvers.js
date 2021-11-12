@@ -107,13 +107,25 @@ const resolvers = {
                    }
             )
             }
-
-            return toilet
+            return toilet;
             
         }
 
         throw new AuthenticationError('You need to be logged in')
+    },
+    updateToilet: async (parent, args, context) => {
+        if (context.user) {
+            const updatedToilet = Toilet.findOneAndUpdate(
+                {location: args.location},
+                {...args},
+                {new: true}
+                )
+
+            return updatedToilet;
+        }
+        throw new AuthenticationError('You need to be logged in')
     }
+
   }
 };
 
