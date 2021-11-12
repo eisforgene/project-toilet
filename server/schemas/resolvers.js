@@ -10,6 +10,13 @@ const resolvers = {
                 .populate('toilets')
         
         return user;
+      },
+      user: async(parent, { username }) => {
+          const user = await User.findOne()
+                    .select('-__v -password')
+                    .populate('toilets')
+            
+        return user;
       }
   },
   Mutation: {
