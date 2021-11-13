@@ -2,6 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     type User {
+        _id: ID
         firstName: String!
         lastName: String!
         email: String!
@@ -10,6 +11,8 @@ const typeDefs = gql`
         toilets: [Toilet]
     }
     type Toilet {
+        _id: ID
+        username: String!
         overallRating: Int!
         location: String!
         genderNeutral: Boolean!
@@ -21,6 +24,7 @@ const typeDefs = gql`
         comment: String!
     }
     type Location {
+        _id: ID
         location: String!
         toilets: [Toilet]
     }
