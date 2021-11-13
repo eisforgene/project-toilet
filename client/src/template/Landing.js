@@ -1,7 +1,7 @@
 import React from "react";
 
 const Landing = () => {
-    
+      
   return (
     <header className="masthead">
       <div className="container position-relative">
@@ -11,18 +11,18 @@ const Landing = () => {
               {/*Page Heading*/}
               <h1 className="mb-5">Search a toilet near you!</h1>
               {/*Sign Up Form*/}
-              <form
+              {/* <form
                 className="form-subscribe"
                 id="contactForm"
                 data-sb-form-api-token="API_TOKEN"
-              >
+              > */}
                 {/*Location Search*/}
                 <div className="row">
                   <div className="col">
                     <input
                       className="form-control form-control-lg"
-                      id="emailAddress"
-                      type="email"
+                      id="zipcode" // changed id to zipcode and type to 
+                      type="input"
                       placeholder="Enter zipcode here"
                     />{" "}
                     {/*can be included: data-sb-validations="required,email"*/}
@@ -31,7 +31,7 @@ const Landing = () => {
                   </div>
                   <div className="col-auto">
                     <button
-                      className="btn btn-primary btn-lg disabled"
+                      className="btn btn-primary btn-lg"
                       id="submitButton"
                       type="submit"
                     >
@@ -39,22 +39,7 @@ const Landing = () => {
                     </button>
                   </div>
                 </div>
-                <div className="d-none" id="submitSuccessMessage">
-                  <div className="text-center mb-3">
-                    <div className="fw-bolder">Form submission successful!</div>
-                    <p>To activate this form, sign up at</p>
-                    <a className="text-white" href="#signup">
-                      provide link
-                    </a>{" "}
-                    {/* provide links for this part */}
-                  </div>
-                </div>
-                <div className="d-none" id="submitErrorMessage">
-                  <div className="text-center text-danger mb-3">
-                    Error sending message!
-                  </div>
-                </div>
-              </form>
+              {/* </form> */}
             </div>
           </div>
         </div>
