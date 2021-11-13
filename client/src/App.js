@@ -1,52 +1,45 @@
 import React from "react";
 
 import "./App.css";
-import Navbar from "./template/Navbar";
-import Landing from "./template/Landing";
-import Sample from "./template/Sample";
-import Footer from "./template/Footer";
-import Signup from "./template/Signup";
-import Login from "./template/Login";
+import AppNavbar from "./components/Navbar";
+import Landing from "./components/Landing";
+import Sample from "./components/Sample";
+import Footer from "./components/Footer";
+import SignupForm from "./components/SignupForm";
+import LoginForm from "./components/LoginForm";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
-// import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
-// const httpLink = createHttpLink({
-//   uri: 'http://localhost:3001/graphql',
-// });
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql',
+});
 
-// const client = new ApolloClient({
-//   link: httpLink,
-//   cache: new InMemoryCache(),
-// });
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
 
-// const Home = () => {
-//   <div className="App">
-//     <Navbar />
-//     <Landing />
-//     <Sample />
-//     <Footer />
-//   </div>;
-// };
 
 function App() {
   return (
+    <ApolloProvider client={client}>
     <Router>
-      <Navbar />
+      <AppNavbar />
       <Landing />
       <Switch>
-        <Route exact path="/signup">
-          <Signup />
+        <Route exact path="/signup" component={SignupForm}>
         </Route>
-        <Route exact path="/login">
-          <Login />
+        <Route exact path="/login"component={LoginForm}> 
         </Route>
       </Switch>
       <Sample />
       <Footer />
     </Router>
+    </ApolloProvider>
   );
+
 }
 
 export default App;
