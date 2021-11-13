@@ -1,33 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
-});
+import React from "react";
 
-const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-});
+import "./App.css";
+import Navbar from "./template/Navbar";
+import Landing from "./template/Landing";
+import Sample from "./template/Sample";
+import Footer from "./template/Footer";
+import Signup from "./template/Signup";
+import Login from "./template/Login";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+
+// import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+
+// const httpLink = createHttpLink({
+//   uri: 'http://localhost:3001/graphql',
+// });
+
+// const client = new ApolloClient({
+//   link: httpLink,
+//   cache: new InMemoryCache(),
+// });
+
+// const Home = () => {
+//   <div className="App">
+//     <Navbar />
+//     <Landing />
+//     <Sample />
+//     <Footer />
+//   </div>;
+// };
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Landing />
+      <Switch>
+        <Route exact path="/signup">
+          <Signup />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+      </Switch>
+      <Sample />
+      <Footer />
+    </Router>
   );
 }
 
