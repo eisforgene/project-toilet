@@ -1,6 +1,7 @@
 import React from "react";
 
 const Landing = () => {
+    
   return (
     <header className="masthead">
       <div className="container position-relative">

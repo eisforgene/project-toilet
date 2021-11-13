@@ -5,9 +5,10 @@ import Navbar from "./template/Navbar";
 import Landing from "./template/Landing";
 import Sample from "./template/Sample";
 import Footer from "./template/Footer";
-import Form from "./template/Login";
-import Login from "./template/Form";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Signup from "./template/Signup";
+import Login from "./template/Login";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 
 // import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
@@ -20,17 +21,30 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 //   cache: new InMemoryCache(),
 // });
 
+// const Home = () => {
+//   <div className="App">
+//     <Navbar />
+//     <Landing />
+//     <Sample />
+//     <Footer />
+//   </div>;
+// };
+
 function App() {
   return (
     <Router>
-    <div className="App">
       <Navbar />
-      <Route path='/signup' component={Login}/>
-      <Route path='/signup' component={Form}/>
       <Landing />
+      <Switch>
+        <Route exact path="/signup">
+          <Signup />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+      </Switch>
       <Sample />
       <Footer />
-    </div>
     </Router>
   );
 }
