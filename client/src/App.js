@@ -8,6 +8,7 @@ import Footer from "./template/Footer";
 import Signup from "./template/Signup";
 import Login from "./template/Login";
 import ToiletForm from "./template/Form";
+import Map from './template/Map'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { onError } from 'apollo-link-error';
@@ -61,6 +62,7 @@ function App() {
     <Router>
       <Navbar />
       <Landing />
+      <Map />
       <Switch>
         <Route exact path="/signup">
           <Signup />

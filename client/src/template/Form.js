@@ -117,8 +117,8 @@ const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '
                 <Label for="comment">comment</Label>
                 <Input onBlur={handleChange} onChange={handleChange} type="textarea" id="comment" name="comment" placeholder="Enter a comment"></Input>
             </FormGroup>
-            <Button>Submit</Button>
-        </Form>
+           <Button>Submit</Button>
+        </Form> 
         
         </>
     )
