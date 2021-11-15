@@ -1,5 +1,5 @@
 import React from 'react';
-import env from 'react-dotenv';
+import env  from 'react-dotenv';
 import mapStyles from '../mapStyles';
 import {
     GoogleMap,
@@ -33,7 +33,7 @@ const Map = () => {
 
 
     const { isLoaded, loadError} = useLoadScript({
-        id: 'abiding-rhythm-332220',
+        id: process.env.GOOGLE_MAPS_ID || env.GOOGLE_MAPS_ID,
         googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || env.GOOGLE_MAPS_API_KEY,
         libraries
     });
