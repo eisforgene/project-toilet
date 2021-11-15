@@ -11368,3 +11368,8 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
+.form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
