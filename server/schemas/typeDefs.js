@@ -44,9 +44,9 @@ const typeDefs = gql`
         addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
         updateUser(firstName: String, lastName: String, email: String, username: String): User
         updatePassword(password: String!): User
-        addToilet(overallRating: Int!, location: String!, genderNeutral: Boolean!, cleanliness: Int!, changingTable: Boolean!, handicapAccessible: Int!, toiletPaper: Boolean!, keys: Boolean!, comment: String!): Toilet
-        updateToilet(overallRating: Int, location: String, genderNeutral: Boolean, cleanliness: Int, changingTable: Boolean, handicapAccessible: Int, toiletPaper: Boolean, keys: Boolean, comment: String): Toilet
-        login(username: String!, password: String!): Auth
+        addToilet(username: String!, overallRating: Int!, location: String!, genderNeutral: Boolean!, cleanliness: Int!, changingTable: Boolean!, handicapAccessible: Int!, toiletPaper: Boolean!, keys: Boolean!, comment: String!): Toilet
+        updateToilet(username: String!, overallRating: Int, location: String, genderNeutral: Boolean, cleanliness: Int, changingTable: Boolean, handicapAccessible: Int, toiletPaper: Boolean, keys: Boolean, comment: String): Toilet
+        login(email: String!, password: String!): Auth
     }
 `;
 

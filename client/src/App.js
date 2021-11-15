@@ -7,6 +7,7 @@ import Sample from "./template/Sample";
 import Footer from "./template/Footer";
 import Signup from "./template/Signup";
 import Login from "./template/Login";
+import ToiletForm from "./template/Form";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
@@ -32,6 +33,8 @@ const client = new ApolloClient({
 // };
 
 function App() {
+
+
   return (
     <ApolloProvider client={client}>
     <Router>
@@ -43,6 +46,9 @@ function App() {
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/add">
+          <ToiletForm />
         </Route>
       </Switch>
       <Sample />
