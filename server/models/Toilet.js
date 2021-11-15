@@ -2,46 +2,37 @@ const { Schema, model } = require('mongoose');
 
 const toiletSchema = new Schema({
     username: {
-        type: String,
-        require: true
+        type: String
     },
     overallRating: {
-        type: Number,
-        required: true,
+        type: String,
         trim: true
       },
       location: {
         type: String,
-        required: true,
         trim: true
       },
       genderNeutral: {
-        type: Boolean,
-        required: true,
+        type: String
+
       },
       cleanliness: {
-          type: Number,
-          require: true,
+          type: String
       },
       changingTable: {
-          type: Boolean,
-          require: true,
+          type: String
       },
       handicapAccessible: {
-          type: Number,
-          require: true,
+          type: String
       },
       toiletPaper: {
-          type: Boolean,
-          require: true,
+          type: String,
       },
       keys: {
-          type: Boolean,
-          require: true,
+          type: String,
       },
       comment: {
           type: String,
-          require: true
       }
 })
 
