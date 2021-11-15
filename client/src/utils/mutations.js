@@ -12,9 +12,8 @@ export const LOGIN = gql`
 `;
 
 export const ADDTOILET = gql`
-  mutation addToilet($username: String!, $overallRating: Int!, $location: String!, $genderNeutral: Boolean!, $cleanliness: Int!, $changingTable: Boolean!, $handicapAccessible: Int!, $toiletPaper: Boolean!, $keys: Boolean!, $comment: String!) {
-    addToilet(username: $username, overallRating: $overallRating, location: $location, genderNeutral: $genderNeutral, cleanliness: $cleanliness, changingTable: $changingTable, handicapAccessible: $handicapAccessible, toiletPaper: $toiletPaper, keys: $keys, comment: $comment) {
-      username
+  mutation addToilet($overallRating: String!, $location: String!, $genderNeutral: String!, $cleanliness: String!, $changingTable: String!, $handicapAccessible: String!, $toiletPaper: String!, $keys: String!, $comment: String!) {
+    addToilet(overallRating: $overallRating, location: $location, genderNeutral: $genderNeutral, cleanliness: $cleanliness, changingTable: $changingTable, handicapAccessible: $handicapAccessible, toiletPaper: $toiletPaper, keys: $keys, comment: $comment){
       location
     }
   }

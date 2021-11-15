@@ -28,6 +28,17 @@ const resolvers = {
           }
 
           throw new AuthenticationError('Not logged in');
+      }, 
+      locations: async() => {
+          const locations = await Location.find()
+                                    .populate('toilets')
+
+            return locations;
+      },
+      toilets: async () => {
+          const toilets = await Toilet.find()
+
+          return toilets
       }
   },
   Mutation: {

@@ -3,10 +3,10 @@ const { Schema, model } = require('mongoose');
 const toiletSchema = new Schema({
     username: {
         type: String,
-        require: true
+        required: true
     },
     overallRating: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
       },
@@ -16,32 +16,32 @@ const toiletSchema = new Schema({
         trim: true
       },
       genderNeutral: {
-        type: Boolean,
+        type: String,
         required: true,
       },
       cleanliness: {
-          type: Number,
-          require: true,
+          type: String,
+          required: true,
       },
       changingTable: {
-          type: Boolean,
-          require: true,
+          type: String,
+          required: true,
       },
       handicapAccessible: {
-          type: Number,
-          require: true,
+          type: String,
+          required: true,
       },
       toiletPaper: {
-          type: Boolean,
-          require: true,
+          type: String,
+          required: true,
       },
       keys: {
-          type: Boolean,
-          require: true,
+          type: String,
+          required: true,
       },
       comment: {
           type: String,
-          require: true
+          required: true
       }
 })
 

@@ -13,14 +13,14 @@ const typeDefs = gql`
     type Toilet {
         _id: ID
         username: String!
-        overallRating: Int!
+        overallRating: String!
         location: String!
-        genderNeutral: Boolean!
-        cleanliness: Int!
-        changingTable: Boolean!
-        handicapAccessible: Int!
-        toiletPaper: Boolean!
-        keys: Boolean!
+        genderNeutral: String!
+        cleanliness: String!
+        changingTable: String!
+        handicapAccessible: String!
+        toiletPaper: String!
+        keys: String!
         comment: String!
     }
     type Location {
@@ -36,6 +36,7 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
+        locations: [Location]
         toilets: [Toilet]
         toiletByUser(userId: ID!): User
         toiletByLocation(location: String!): [Location] 
@@ -44,8 +45,8 @@ const typeDefs = gql`
         addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
         updateUser(firstName: String, lastName: String, email: String, username: String): User
         updatePassword(password: String!): User
-        addToilet(username: String!, overallRating: Int!, location: String!, genderNeutral: Boolean!, cleanliness: Int!, changingTable: Boolean!, handicapAccessible: Int!, toiletPaper: Boolean!, keys: Boolean!, comment: String!): Toilet
-        updateToilet(username: String!, overallRating: Int, location: String, genderNeutral: Boolean, cleanliness: Int, changingTable: Boolean, handicapAccessible: Int, toiletPaper: Boolean, keys: Boolean, comment: String): Toilet
+        addToilet(overallRating: String!, location: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Toilet
+        updateToilet(overallRating: String, location: String, genderNeutral: String, cleanliness: String, changingTable: String, handicapAccessible: String, toiletPaper: String, keys: String, comment: String): Toilet
         login(email: String!, password: String!): Auth
     }
 `;
