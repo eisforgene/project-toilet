@@ -25,15 +25,17 @@ const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '
             console.log(formState)
 
         };
-
-    const getLocation = async () => {
-        return 
-
-    }
+     
 
     const handleFormSubmit = async event => {
         
         event.preventDefault();
+
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        console.log(token)
+        if (!token) {
+          return false;
+        }
 
         navigator.geolocation.getCurrentPosition(position => {
             const { latitude, longitude } = position.coords
