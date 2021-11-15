@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 
 const Login = () => {
     const [formState, setFormState] = useState({ email: '', password: '' });
-    const [login, { error }] = useMutation(LOGIN);
+    const [login] = useMutation(LOGIN);
 
     // update state based on form input changes
     const handleChange = event => {

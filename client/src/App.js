@@ -1,5 +1,5 @@
 import React from "react";
-
+import { setContext } from '@apollo/client/link/context';
 import "./App.css";
 import Navbar from "./template/Navbar";
 import Landing from "./template/Landing";
@@ -27,10 +27,20 @@ const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const link = ApolloLink.from([errorLink, httpLink])
 
 const client = new ApolloClient({
-  link: link,
+  link: authLink.concat(link),
   cache: new InMemoryCache(),
 });
 

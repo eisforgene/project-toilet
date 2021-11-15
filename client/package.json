@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@apollo/client": "^3.4.17",
     "@testing-library/jest-dom": "^5.15.0",
@@ -15,7 +14,9 @@
     "react-router-dom": "^5.0.2",
     "react-scripts": "4.0.3",
     "reactstrap": "^9.0.1",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "apollo-link": "^1.2.14",
+    "apollo-link-error": "^1.1.13"
   },
   "scripts": {
     "start": "react-scripts start",
