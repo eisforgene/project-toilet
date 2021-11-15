@@ -10,16 +10,27 @@ import Login from "./template/Login";
 import ToiletForm from "./template/Form";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-
+import { onError } from 'apollo-link-error';
+import { ApolloLink }  from 'apollo-link';
 
 // import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    console.log('graphQLErrors', graphQLErrors);
+  }
+  if (networkError) {
+    console.log('networkError', networkError)
+  }
+})
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
 });
 
+const link = ApolloLink.from([errorLink, httpLink])
+
 const client = new ApolloClient({
-  link: httpLink,
+  link: link,
   cache: new InMemoryCache(),
 });
 

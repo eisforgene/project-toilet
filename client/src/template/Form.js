@@ -3,6 +3,7 @@ import {  Form, FormGroup, Label, Input, Button} from 'reactstrap'
 import { ADDTOILET } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 
+
 const ToiletForm = () => {
 
 // addToilet(overallRating: Int!, location: String!, genderNeutral: String!, cleanliness: Int!, changingTable: Boolean!, handicapAccessible: Int!, toiletPaper: Boolean!, keys: Boolean!, comment: String!): Toilet
@@ -21,8 +22,8 @@ const [formState, setFormState] = useState({ overallRating: '', location: '', ge
                 [name]: value
             });
 
-            await getLocation()
             console.log(formState)
+
         };
 
     const getLocation = async () => {
@@ -30,11 +31,6 @@ const [formState, setFormState] = useState({ overallRating: '', location: '', ge
             const { latitude, longitude } = position.coords
             const location = latitude + 'X' + longitude 
 
-            setFormState({
-                ...formState,
-                location: location
-            })
-            console.log(formState)
             
 
         })
