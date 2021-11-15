@@ -8,18 +8,19 @@ import Footer from "./template/Footer";
 import Signup from "./template/Signup";
 import Login from "./template/Login";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
 
 // import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
-// const httpLink = createHttpLink({
-//   uri: 'http://localhost:3001/graphql',
-// });
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql',
+});
 
-// const client = new ApolloClient({
-//   link: httpLink,
-//   cache: new InMemoryCache(),
-// });
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
 
 // const Home = () => {
 //   <div className="App">
@@ -32,6 +33,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
+    <ApolloProvider client={client}>
     <Router>
       <Navbar />
       <Landing />
@@ -46,6 +48,7 @@ function App() {
       <Sample />
       <Footer />
     </Router>
+    </ApolloProvider>
   );
 }
 
