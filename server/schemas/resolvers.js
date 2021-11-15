@@ -64,8 +64,8 @@ const resolvers = {
         
         throw new AuthenticationError('You need to be logged in')
     },
-    login: async ( parent, { username, password } ) => {
-        const user = await User.findOne({ username });
+    login: async ( parent, { email, password } ) => {
+        const user = await User.findOne({ email });
 
         if (!user) {
             throw new AuthenticationError('Incorrect credentials');
@@ -82,8 +82,8 @@ const resolvers = {
        return { token, user };
     },
     addToilet: async (parent, args, context) => {
-        if (context.user) {
 
+        if (context.user) {
             const toilet = await Toilet.create({username: context.user.username, ...args})
 
             const addToUser = await User.findOneAndUpdate(
@@ -107,11 +107,10 @@ const resolvers = {
                    }
             )
             }
-            return toilet;
-            
         }
 
-        throw new AuthenticationError('You need to be logged in')
+        throw new AuthenticationError('You need to be logged in!')
+
     },
     updateToilet: async (parent, args, context) => {
         if (context.user) {

@@ -10,3 +10,13 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const ADDTOILET = gql`
+  mutation addToilet($overallRating: String!, $location: String!, $genderNeutral: String!, $cleanliness: String!, $changingTable: String!, $handicapAccessible: String!, $toiletPaper: String!, $keys: String!, $comment: String!) {
+    addToilet(overallRating: $overallRating, location: $location, genderNeutral: $genderNeutral, cleanliness: $cleanliness, changingTable: $changingTable, handicapAccessible: $handicapAccessible, toiletPaper: $toiletPaper, keys: $keys, comment: $comment) {
+      _id
+      username
+      location
+    }
+  }
+`
