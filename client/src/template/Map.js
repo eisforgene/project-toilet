@@ -1,4 +1,5 @@
 import React from 'react';
+import env from 'react-dotenv';
 import mapStyles from '../mapStyles';
 import {
     GoogleMap,
@@ -9,6 +10,7 @@ import {
 import { formatRelative } from 'date-fns'
 
 import '@reach/combobox/styles.css'
+
 
 const libraries = ['places']
 const mapContainerStyle = {
@@ -31,7 +33,8 @@ const Map = () => {
 
 
     const { isLoaded, loadError} = useLoadScript({
-        googleMapsApikey: process.env.GOOGLE_MAPS_API_KEY,
+        id: 'abiding-rhythm-332220',
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || env.GOOGLE_MAPS_API_KEY,
         libraries
     });
 
