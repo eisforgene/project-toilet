@@ -46,6 +46,7 @@ const Map = () => {
     });
 
     const [markers, setMarkers] = React.useState([]);
+    const [selected, setSelected] = React.useState(null)
 
     if (loadError) return 'Error lading maps';
     if (!isLoaded) return "Loading Maps";
@@ -57,15 +58,24 @@ const Map = () => {
         anchor: new window.google.maps.Point(10,32)
    };
 
+   const mapRef = React.useRef();
+   const onMapLoad = React.useCallback(() => {
+    mapRef.current = map;
+   }, [])
+
     return (<div>
-        <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center} options={options} onClick={onMapClick}>
+        <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center} options={options} onClick={onMapClick} onLoad={onMapLoad}>
 
             {markers.map(marker => <Marker key={marker.time.toISOString()}
             position={{lat: marker.lat, lng: marker.lng}}
-            icon={image}
+            icon={image} onClick={setSelected}
             />)}
 
-
+        {selected ? (<InfoWindow position={{lat:selected.lat, lng: selected.lng}}> 
+            <div>
+                <h2>This is a Toilet</h2>
+            </div>
+            </InfoWindow>) : null }
         </GoogleMap>
     </div> 
     )
