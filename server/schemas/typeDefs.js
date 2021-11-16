@@ -8,9 +8,9 @@ const typeDefs = gql`
         email: String!
         username: String!
         password: String!
-        toilets: [Toilet]
+        reviews: [Review]
     }
-    type Toilet {
+    type Review {
         _id: ID
         username: String!
         overallRating: Int!
@@ -26,7 +26,7 @@ const typeDefs = gql`
     type Location {
         _id: ID
         location: String!
-        toilets: [Toilet]
+        reviews: [Review]
     }
     type Auth {
         token: ID
@@ -36,16 +36,17 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        toilets: [Toilet]
-        toiletByUser(userId: ID!): User
-        toiletByLocation(location: String!): [Location] 
+        locations(zipcode: String!): [Location]
+        reviews: [Review]
+        ReviewsByUser(userId: ID!): User
+        ReviewsByLocation(location: String!): Location]
     }
     type Mutation {
         addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
         updateUser(firstName: String, lastName: String, email: String, username: String): User
         updatePassword(password: String!): User
-        addToilet(overallRating: String!, location: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Toilet
-        updateToilet(overallRating: String, location: String, genderNeutral: String, cleanliness: String, changingTable: String, handicapAccessible: String, toiletPaper: String, keys: String, comment: String): Toilet
+        addReview(overallRating: String!, location: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Review
+        updateReview(overallRating: String, location: String, genderNeutral: String, cleanliness: String, changingTable: String, handicapAccessible: String, toiletPaper: String, keys: String, comment: String): Review
         login(email: String!, password: String!): Auth
     }
 `;

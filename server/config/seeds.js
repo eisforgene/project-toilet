@@ -6,9 +6,9 @@ db.once('open', async () => {
     await Location.deleteMany();
 
     const locations = await Location.insertMany([
-        {location: '205 N Spring St, Los Angeles, CA 90012'},
-        {location: 'N Alvarado St &, Bellevue Ave, Los Angeles, CA 90026'},
-        {location: '217 N Hill St, Los Angeles, CA 90012'}
+        {zipcode: '90012', coordinates: ''},
+        {zipcode: '90026'},
+        {zipcode: '90012'}
     ]);
 
     console.log('locations seeded');
@@ -33,9 +33,9 @@ db.once('open', async () => {
   
     console.log('users seeded');
 
-    await Toilet.deleteMany();
+    await Review.deleteMany();
 
-    const toilets = await Toilet.insertMany([
+    const reviews = await Review.insertMany([
         {
             username: 'pamela',
             overallRating: 4,
