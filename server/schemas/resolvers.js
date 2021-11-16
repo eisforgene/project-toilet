@@ -39,6 +39,11 @@ const resolvers = {
                                     .populate('reviews')
 
         return toilets;
+    },
+    toiletsByZip: async (parent, args) => {
+        const toilets = await Toilet.find({zipcode: args.zipcode})
+                                    .populate('reviews')
+        return toilets;
     }
   },
   Mutation: {

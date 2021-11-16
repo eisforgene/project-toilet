@@ -38,6 +38,7 @@ const typeDefs = gql`
         users: [User]
         user(username: String!): User
         toilets: [Toilet]
+        toiletsByZip(zipcode: String!): [Toilet]
         reviews: [Review]
         reviewsByUser(userId: ID!): User
         reviewsByToilet(coordinates: String!): Toilet

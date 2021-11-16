@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import env from 'react-dotenv';
 import mapStyles from '../mapStyles';
 import {
@@ -20,7 +20,8 @@ import {
     ComboboxList,
     ComboboxOption
 } from "@reach/combobox";
-
+import {  useQuery } from '@apollo/client';
+import { QUERY_TOILETS } from '../utils/queries';
 import '@reach/combobox/styles.css'
 
 
@@ -45,14 +46,26 @@ const center = {
 
 const Map = () => {
 
+
+    const {loading, data} = useQuery(QUERY_TOILETS, {variables: {zipcode: '90012'}})
+    const [toilets, setToilets] = React.useState(data);
+
+    useEffect(() => {
+        if (data) {
+           
+        } 
+    }, [data, loading])
+
     const { isLoaded, loadError } = useLoadScript({
         id: process.env.GOOGLE_MAPS_ID || env.GOOGLE_MAPS_ID,
         googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || env.GOOGLE_MAPS_API_KEY,
         libraries
     });
-
+    
+    
 
     const [markers, setMarkers] = React.useState([]);
+   
     const [selected, setSelected] = React.useState(null)
 
     const onMapClick = React.useCallback((event) => {
