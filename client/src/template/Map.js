@@ -5,15 +5,13 @@ import {
     GoogleMap,
     useLoadScript,
     Marker,
-    InfoWindow,
-    MarkerClusterer
+    InfoWindow
 } from '@react-google-maps/api'
-import { formatRelative } from 'date-fns'
 
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
-    getLatlng,
+    getZipCode
 } from "use-places-autocomplete";
 import {
     Combobox,
@@ -160,8 +158,10 @@ const Map = () => {
 
             try {
                 const results = await getGeocode({address});
+                const zipcode = await getZipCode(results[0], false)
                 const { lat, lng } = await getLatLng(results[0])
                 panTo({lat, lng})
+                
 
             } catch(error) {
                 console.log('error!')

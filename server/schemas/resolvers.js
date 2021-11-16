@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Review, Location } = require('../models');
+const { User, Review, Toilet } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -34,11 +34,11 @@ const resolvers = {
         
         return reviews;
     },
-    locations: async(parent, args) => {
-        const locations = await Location.find({zipcode: args.zipcode})
-                                        .populate('reviews')
+    toilets: async(parent, args) => {
+        const toilets = await Toilet.find({})
+                                    .populate('reviews')
 
-        return locations;
+        return toilets;
     }
   },
   Mutation: {
@@ -97,37 +97,27 @@ const resolvers = {
         if (context.user) {
             const review = await Review.create({username: context.user.username, ...args})
 
-            const addToUser = await User.findOneAndUpdate(
+            const updatedUser = await User.findOneAndUpdate(
                 {_id: context.user._id},
                 { $addToSet: {reviews: review._id}},
                 {new: true}
                 )            
-            
-            const location = await Location.findOne({location: args.location})
-
-            if (location) {
-               const updatedLocation = await Location.findOneAndUpdate(
-                   {location: args.location},
+           
+            const updatedToilet = await Toilet.findOneAndUpdate(
+                   {coordinates: args.coordinates},
                    { $push: {reviews: review._id}},
                    {new: true}
                    )
-            } else {
-            const newLocation = await Location.create(
-                   {
-                       location: args.location, reviews: review._id
-                   }
-            )
-            }
-            return review;
+
+            return updatedToilet
         }
 
-        throw new AuthenticationError('You need to be logged in!')
-
+       throw new AuthenticationError('You need to be logged in!')
     },
     updateReview: async (parent, args, context) => {
         if (context.user) {
             const updatedReview = Review.findOneAndUpdate(
-                {location: args.location},
+                { coordinates: args.coordinates },
                 {...args},
                 {new: true}
                 )
@@ -135,8 +125,28 @@ const resolvers = {
             return updatedReview;
         }
         throw new AuthenticationError('You need to be logged in')
-    }
+    },
+    createNewToilet: async (parent, args, context) => {
 
+        const {zipcode, coordinates, overallRating, genderNeutral, cleanliness, changingTable, handicapAccessible, toiletPaper, keys, comment} = args
+
+        if (context.user) {
+            const review = await Review.create({username: context.user.username, coordinates, overallRating, genderNeutral, cleanliness, changingTable, handicapAccessible, toiletPaper, keys, comment})
+
+            const updatedUser = await User.findOneAndUpdate(
+                {_id: context.user._id},
+                { $addToSet: {reviews: review._id}},
+                {new: true}
+                )        
+
+            const newToilet = await Toilet.create(
+                { coordinates: coordinates, zipcode: zipcode, reviews: [review._id]}
+            )
+
+            return newToilet
+        }
+        throw new AuthenticationError('You need to be logged in')
+    }
   }
 };
 

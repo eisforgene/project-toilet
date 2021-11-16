@@ -12,20 +12,21 @@ const typeDefs = gql`
     }
     type Review {
         _id: ID
-        username: String!
-        overallRating: Int!
-        location: String!
-        genderNeutral: Boolean!
-        cleanliness: Int!
-        changingTable: Boolean!
-        handicapAccessible: Int!
-        toiletPaper: Boolean!
-        keys: Boolean!
-        comment: String!
+        username: String
+        overallRating: String
+        coordinates: String
+        genderNeutral: String
+        cleanliness: String
+        changingTable: String
+        handicapAccessible: String
+        toiletPaper: String
+        keys: String
+        comment: String
     }
-    type Location {
+    type Toilet {
         _id: ID
-        location: String!
+        coordinates: String!
+        zipcode: String!
         reviews: [Review]
     }
     type Auth {
@@ -36,17 +37,18 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        locations(zipcode: String!): [Location]
+        toilets: [Toilet]
         reviews: [Review]
-        ReviewsByUser(userId: ID!): User
-        ReviewsByLocation(location: String!): Location]
+        reviewsByUser(userId: ID!): User
+        reviewsByToilet(coordinates: String!): Toilet
     }
     type Mutation {
         addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
         updateUser(firstName: String, lastName: String, email: String, username: String): User
         updatePassword(password: String!): User
-        addReview(overallRating: String!, location: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Review
-        updateReview(overallRating: String, location: String, genderNeutral: String, cleanliness: String, changingTable: String, handicapAccessible: String, toiletPaper: String, keys: String, comment: String): Review
+        createNewToilet(coordinates: String!, zipcode: String!, overallRating: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Toilet
+        addReview(overallRating: String!, coordinates: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Review
+        updateReview(overallRating: String, coordinates: String, genderNeutral: String, cleanliness: String, changingTable: String, handicapAccessible: String, toiletPaper: String, keys: String, comment: String): Review
         login(email: String!, password: String!): Auth
     }
 `;

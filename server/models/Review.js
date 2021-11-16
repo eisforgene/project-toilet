@@ -6,15 +6,12 @@ const reviewSchema = new Schema({
     },
     overallRating: {
         type: String,
-        trim: true
       },
-      location: {
+      coordinates: {
         type: String,
-        trim: true
       },
       genderNeutral: {
         type: String
-
       },
       cleanliness: {
           type: String

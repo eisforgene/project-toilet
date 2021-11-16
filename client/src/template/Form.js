@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import {  Form, FormGroup, Label, Input, Button} from 'reactstrap'
-import { ADDTOILET } from '../utils/mutations'
+import { ADDREVIEW } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth'
 
-const ToiletForm = () => {
+const ReviewForm = () => {
 
-// addToilet(overallRating: Int!, location: String!, genderNeutral: String!, cleanliness: Int!, changingTable: Boolean!, handicapAccessible: Int!, toiletPaper: Boolean!, keys: Boolean!, comment: String!): Toilet
-
-const [addToilet, {error}] = useMutation(ADDTOILET)
+const [addReview, {error}] = useMutation(ADDREVIEW)
 
 const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '', cleanliness: '', handicapAccessible: '', toiletPaper: '', keys: '', comment: ''});
 
@@ -34,12 +32,12 @@ const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '
         }
 
         navigator.geolocation.getCurrentPosition(position => {
+        
             const { latitude, longitude } = position.coords
-             const location = latitude + 'X' + longitude 
-             
+             const coordinates = latitude + 'X' + longitude 
             try {
-            addToilet({
-                    variables: {location: location, ...formState}
+            addReview({
+                    variables: { coordinates: coordinates, ...formState}
                 })
            } catch (e) {
                console.error(e)
@@ -124,4 +122,4 @@ const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '
     )
 }
 
-export default ToiletForm;
+export default ReviewForm;
