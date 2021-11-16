@@ -1,41 +1,23 @@
 const { Schema, model } = require('mongoose');
 
 const toiletSchema = new Schema({
-    username: {
-        type: String
+    coordinates: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
     },
-    overallRating: {
+    zipcode: {
         type: String,
-        trim: true
-      },
-      location: {
-        type: String,
-        trim: true
-      },
-      genderNeutral: {
-        type: String
-
-      },
-      cleanliness: {
-          type: String
-      },
-      changingTable: {
-          type: String
-      },
-      handicapAccessible: {
-          type: String
-      },
-      toiletPaper: {
-          type: String,
-      },
-      keys: {
-          type: String,
-      },
-      comment: {
-          type: String,
-      }
+        required: true,
+        trim: true,
+    },
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
+    }]
 })
 
-const Toilet = new model('Toilet', toiletSchema)
+const Toilet = new model('Toilet', toiletSchema);
 
 module.exports = Toilet;
