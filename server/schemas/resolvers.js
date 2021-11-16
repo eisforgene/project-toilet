@@ -12,7 +12,7 @@ const resolvers = {
         return user;
       },
       user: async(parent, { username }) => {
-          const user = await User.findOne()
+          const user = await User.findOne({ username: username })
                     .select('-__v -password')
                     .populate('toilets')
             
@@ -28,7 +28,12 @@ const resolvers = {
           }
 
           throw new AuthenticationError('Not logged in');
-      }
+      },
+      toilets: async() => {
+        const toilets = await Toilet.find()
+        
+        return toilets;
+    }
   },
   Mutation: {
     addUser:  async (parent, args) => {
@@ -107,6 +112,7 @@ const resolvers = {
                    }
             )
             }
+            return toilet;
         }
 
         throw new AuthenticationError('You need to be logged in!')

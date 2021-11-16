@@ -15,15 +15,11 @@ const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '
 // update state based on form input changes
         const handleChange = async event => {
             const { name, value } = event.target;
-            console.log(name, value)
             
             setFormState({
                 ...formState,
                 [name]: value
             });
-
-            console.log(formState)
-
         };
      
 
@@ -32,7 +28,7 @@ const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '
         event.preventDefault();
 
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-        console.log(token)
+
         if (!token) {
           return false;
         }
