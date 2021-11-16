@@ -47,14 +47,26 @@ const center = {
 const Map = () => {
 
 
-    const {loading, data} = useQuery(QUERY_TOILETS, {variables: {zipcode: '90012'}})
-    const [toilets, setToilets] = React.useState(data);
+    const {loading, data} = useQuery(QUERY_TOILETS, {variables: {zipcode: '90027'}})
 
     useEffect(() => {
         if (data) {
-           
+            const {toiletsByZip} = data
+            console.log(data.toiletsByZip)
+            toiletsByZip.map((datum) => {
+              const lng = datum.lng 
+                const lat = datum.lat
+                setMarkers((current) => [
+                    ...current,
+                    {
+                    lng,
+                    lat
+                }
+                ])
+            })
         } 
     }, [data, loading])
+ 
 
     const { isLoaded, loadError } = useLoadScript({
         id: process.env.GOOGLE_MAPS_ID || env.GOOGLE_MAPS_ID,
@@ -74,7 +86,6 @@ const Map = () => {
             {
                 lat: event.latLng.lat(),
                 lng: event.latLng.lng(),
-                time: new Date
             }
         ])
     },
@@ -101,7 +112,7 @@ const Map = () => {
 
                 {markers.map((marker) => (
                     <Marker
-                        key={marker.time.toISOString()}
+                        key={marker.lng+marker.lat}
                         position={{ lat: marker.lat, lng: marker.lng }}
                         icon={
                             {
