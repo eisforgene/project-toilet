@@ -7,6 +7,14 @@ const toiletSchema = new Schema({
         trim: true,
         unique: true,
     },
+    lng: {
+        type: String,
+        required: true,
+    },
+    lat: {
+        type: String,
+        required: true
+    },
     zipcode: {
         type: String,
         required: true,

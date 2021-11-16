@@ -6,6 +6,8 @@ export const QUERY_TOILETS = gql`
         toiletsByZip(zipcode: $zipcode) {
             _id
             coordinates
+            lng
+            lat
             zipcode
             }
     }
