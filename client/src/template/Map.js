@@ -27,7 +27,7 @@ import '@reach/combobox/styles.css'
 
 const libraries = ['places']
 const mapContainerStyle = {
-    width: "800px",
+    width: "100%",
     height: "800px",
 };
 

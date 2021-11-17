@@ -12,7 +12,7 @@ import Map from './template/Map'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { onError } from 'apollo-link-error';
-import { ApolloLink }  from 'apollo-link';
+import { ApolloLink } from 'apollo-link';
 
 
 // import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
@@ -60,24 +60,27 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-    <Router>
-      <Navbar />
-      <Landing />
-      <Map />
-      <Switch>
-        <Route exact path="/signup">
-          <Signup />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/add">
-          <ToiletForm />
-        </Route>
-      </Switch>
-      <Sample />
-      <Footer />
-    </Router>
+      <Router>
+        <Navbar />
+        <Landing />
+        <Map />
+
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signup">
+            <Signup />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/add">
+            <ToiletForm />
+          </Route>
+          <Route path="*" component={Home}/>
+        </Switch>
+        <Sample />
+        <Footer />
+      </Router>
     </ApolloProvider>
   );
 }
