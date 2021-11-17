@@ -35,5 +35,5 @@ db.once('open', () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     });
-  })
+  }) 
 });

@@ -8,7 +8,8 @@ const ReviewForm = () => {
 
 const [addReview, {error}] = useMutation(ADDREVIEW)
 
-const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '', cleanliness: '', handicapAccessible: '', toiletPaper: '', keys: '', comment: ''});
+    const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '', cleanliness: '', handicapAccessible: '', toiletPaper: '', keys: '', comment: '' });
+
 
 // update state based on form input changes
         const handleChange = async event => {
@@ -22,31 +23,33 @@ const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '
      
 
     const handleFormSubmit = async event => {
-        
+
         event.preventDefault();
 
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
-          return false;
+            return false;
         }
 
         navigator.geolocation.getCurrentPosition(position => {
         
             const { latitude, longitude } = position.coords
+
              const coordinates = latitude + 'X' + longitude 
             try {
             addReview({
                     variables: { coordinates: coordinates, ...formState}
                 })
-           } catch (e) {
-               console.error(e)
-               console.log(error)
-           }
+            } catch (e) {
+                console.error(e)
+                console.log(error)
+            }
 
         })
-        
+
     }
+
 
     return(
         <>
