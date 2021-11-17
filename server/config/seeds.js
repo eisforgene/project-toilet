@@ -1,17 +1,17 @@
 const db = require('./connection');
-const { User, Toilet, Location } = require('../models');
+const { User, Toilet, Review } = require('../models');
 
 db.once('open', async () => {
        
-    await Location.deleteMany();
+    await Toilet.deleteMany();
 
-    const locations = await Location.insertMany([
-        {location: '205 N Spring St, Los Angeles, CA 90012'},
-        {location: 'N Alvarado St &, Bellevue Ave, Los Angeles, CA 90026'},
-        {location: '217 N Hill St, Los Angeles, CA 90012'}
+    const toilets = await Toilet.insertMany([
+        {zipcode: '90012', coordinates: '456X456'},
+        {zipcode: '90026', coordinates: '235X234'},
+        {zipcode: '90012', coordinates: '678X234'}
     ]);
 
-    console.log('locations seeded');
+    console.log('toilets seeded');
 
     await User.deleteMany();
 
@@ -33,13 +33,13 @@ db.once('open', async () => {
   
     console.log('users seeded');
 
-    await Toilet.deleteMany();
+    await Review.deleteMany();
 
-    const toilets = await Toilet.insertMany([
+    const reviews = await Review.insertMany([
         {
             username: 'pamela',
             overallRating: 4,
-            location: locations[0]._id,
+            coordinates: '678X678',
             genderNeutral: true,
             cleanliness: 4,
             changingTable: false,
@@ -51,7 +51,7 @@ db.once('open', async () => {
         {
             username: 'eholt',
             overallRating: 1,
-            location: locations[1]._id,
+            coordinates: '9723X2309',
             genderNeutral: false,
             cleanliness: 2,
             changingTable: true,
@@ -63,7 +63,7 @@ db.once('open', async () => {
         {
             username: 'pamela',
             overallRating: 3,
-            location: locations[2]._id,
+            coordinates: '1289X09324',
             genderNeutral: true,
             cleanliness: 3,
             changingTable: false,
@@ -75,7 +75,7 @@ db.once('open', async () => {
         {
             username: 'eholt',
             overallRating: 1,
-            location: locations[0]._id,
+            coordinates: '1209X230990',
             genderNeutral: true,
             cleanliness: 1,
             changingTable: false,

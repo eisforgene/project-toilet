@@ -10,7 +10,7 @@ const Signup = () => {
   // update state based on form input changes
   const handleChange = event => {
     const { name, value } = event.target;
-
+   
     setFormState({
       ...formState,
       [name]: value
@@ -20,7 +20,7 @@ const Signup = () => {
   // submit form
   const handleFormSubmit = async event => {
     event.preventDefault();
-
+    console.log(formState)
     try {
       const { data } = await addUser({
         variables: { ...formState }
