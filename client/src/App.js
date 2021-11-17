@@ -1,5 +1,5 @@
 import React from "react";
-
+import { setContext } from '@apollo/client/link/context';
 import "./App.css";
 import Navbar from "./template/Navbar";
 import Landing from "./template/Landing";
@@ -8,6 +8,7 @@ import Footer from "./template/Footer";
 import Signup from "./template/Signup";
 import Login from "./template/Login";
 import ToiletForm from "./template/Form";
+import Map from './template/Map'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { onError } from 'apollo-link-error';
@@ -28,10 +29,20 @@ const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const link = ApolloLink.from([errorLink, httpLink])
 
 const client = new ApolloClient({
-  link: link,
+  link: authLink.concat(link),
   cache: new InMemoryCache(),
 });
 
@@ -52,6 +63,7 @@ function App() {
     <Router>
       <Navbar />
       <Landing />
+      <Map />
       <Switch>
         <Route exact path="/signup">
           <Signup />

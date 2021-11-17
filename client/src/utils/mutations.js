@@ -11,12 +11,24 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADDTOILET = gql`
-  mutation addToilet($overallRating: String!, $location: String!, $genderNeutral: String!, $cleanliness: String!, $changingTable: String!, $handicapAccessible: String!, $toiletPaper: String!, $keys: String!, $comment: String!) {
-    addToilet(overallRating: $overallRating, location: $location, genderNeutral: $genderNeutral, cleanliness: $cleanliness, changingTable: $changingTable, handicapAccessible: $handicapAccessible, toiletPaper: $toiletPaper, keys: $keys, comment: $comment) {
+export const ADDREVIEW = gql`
+  mutation addReview($overallRating: String!, $coordinates: String!, $genderNeutral: String!, $cleanliness: String!, $changingTable: String!, $handicapAccessible: String!, $toiletPaper: String!, $keys: String!, $comment: String!) {
+    addReview(overallRating: $overallRating, coordinates: $coordinates, genderNeutral: $genderNeutral, cleanliness: $cleanliness, changingTable: $changingTable, handicapAccessible: $handicapAccessible, toiletPaper: $toiletPaper, keys: $keys, comment: $comment) {
       _id
       username
-      location
+      coordinates
     }
   }
 `
+
+export const ADD_USER = gql`
+  mutation addUser($firstName: String!, $lastName: String!, $username: String!, $email: String!, $password: String!) {
+    addUser(firstName: $firstName, lastName: $lastName, username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+      }
+    }
+  }
+`;

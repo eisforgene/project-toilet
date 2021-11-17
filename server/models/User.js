@@ -29,9 +29,9 @@ const userSchema = new Schema({
         required: true,
         minlength: 5
       },
-      toilets: [{
+      reviews: [{
           type: Schema.Types.ObjectId,
-          ref: 'Toilet'
+          ref: 'Review'
       }]
 });
 
