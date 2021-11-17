@@ -66,7 +66,7 @@ function App() {
         <Map />
 
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Landing} />
           <Route exact path="/signup">
             <Signup />
           </Route>
@@ -76,7 +76,7 @@ function App() {
           <Route exact path="/add">
             <ToiletForm />
           </Route>
-          <Route path="*" component={Home}/>
+          <Route path="*" component={Landing}/>
         </Switch>
         <Sample />
         <Footer />
