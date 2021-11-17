@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
-
+import Home from "./template/Home"
 
 // import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -66,7 +66,7 @@ function App() {
         <Map />
 
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/signup">
             <Signup />
           </Route>
@@ -76,7 +76,7 @@ function App() {
           <Route exact path="/add">
             <ToiletForm />
           </Route>
-          <Route path="*" component={Landing}/>
+          <Route path="*" component={Home}/>
         </Switch>
         <Sample />
         <Footer />

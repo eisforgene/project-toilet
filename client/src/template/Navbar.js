@@ -1,12 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+
+
+const Navbar = props => {
+  // trying to add state to change the nav bar when shrinking 
+
+// const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+// const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light static-top">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light rounded">
       <div className="container">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand text-info font-weight-bolder" href="/">
           Toilet SOS
         </a>
         <div className="collapse navbar-collapse" id="navbarResponsive">
