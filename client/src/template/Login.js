@@ -41,9 +41,9 @@ const Login = () => {
     return (
 
         <form onSubmit={handleFormSubmit}>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-4 col-sm-offset-1">
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-sm-4 col-sm-offset-1">
                         <h3>Log in</h3>
 
                         <div className="form-group">
