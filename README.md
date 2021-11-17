@@ -1,4 +1,4 @@
-# Find a Potty 
+# Toilet SOS
 How many times have you needed to go, but don't know where to go or if the bathrrom is safe or clean? We have built a tool to help you in those times of need. 
 
 ## Description
@@ -22,7 +22,7 @@ screen shots of the program will be provided.
 <li>  Eugene </li>
 <ol> 
 <li><a href="https://github.com/eisforgene" > GitHub </a> </li> 
-<li> <a href="mailto:">Email  </a> </li></ol>
+<li> <a href="mailto:ieugenelee@gmail.com">Email  </a> </li></ol>
 
 <li> Megan </li>
  <ol> 
@@ -39,7 +39,7 @@ screen shots of the program will be provided.
 <li>  Daphne </li>
 <ol> 
 <li> <a href="https://github.com/daphne1014"> GitHub </a></li>
-<li> <a href="mailto:">Email </a> </li>
+<li> <a href="mailto:daphnesong1014@gmail.com">Email </a> </li>
 </ol>
 </ul>
 
