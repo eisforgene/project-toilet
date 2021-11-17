@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import env from 'react-dotenv';
 import mapStyles from '../mapStyles';
 import {
@@ -20,7 +20,8 @@ import {
     ComboboxList,
     ComboboxOption
 } from "@reach/combobox";
-
+import {  useQuery } from '@apollo/client';
+import { QUERY_TOILETS } from '../utils/queries';
 import '@reach/combobox/styles.css'
 
 
@@ -45,27 +46,50 @@ const center = {
 
 const Map = () => {
 
+
+    const {loading, data} = useQuery(QUERY_TOILETS, {variables: {zipcode: '90027'}})
+
+    useEffect(() => {
+        if (data) {
+            const {toiletsByZip} = data
+            console.log(data.toiletsByZip)
+            toiletsByZip.map((datum) => {
+              const lng = parseFloat(datum.lng)
+                const lat = parseFloat(datum.lat)
+                setMarkers((current) => [
+                    ...current,
+                    {
+                    lng,
+                    lat
+                }
+                ])
+            })
+        } 
+    }, [data, loading])
+ 
+
     const { isLoaded, loadError } = useLoadScript({
         id: process.env.GOOGLE_MAPS_ID || env.GOOGLE_MAPS_ID,
         googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || env.GOOGLE_MAPS_API_KEY,
         libraries
     });
-
+    
+    
 
     const [markers, setMarkers] = React.useState([]);
+   
     const [selected, setSelected] = React.useState(null)
 
-    const onMapClick = React.useCallback((event) => {
-        setMarkers((current) => [
-            ...current,
-            {
-                lat: event.latLng.lat(),
-                lng: event.latLng.lng(),
-                time: new Date
-            }
-        ])
-    },
-        [])
+    // const onMapClick = React.useCallback((event) => {
+    //     setMarkers((current) => [
+    //         ...current,
+    //         {
+    //             lat: event.latLng.lat(),
+    //             lng: event.latLng.lng(),
+    //         }
+    //     ])
+    // },
+    //     [])
 
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
@@ -84,11 +108,11 @@ const Map = () => {
         <div>
             <Search panTo={panTo} />
             <Locate panTo={panTo}/>
-            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center} options={options} onClick={onMapClick} onLoad={onMapLoad}>
+            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center} options={options} onLoad={onMapLoad}>
 
                 {markers.map((marker) => (
                     <Marker
-                        key={marker.time.toISOString()}
+                        key={marker.lng+marker.lat}
                         position={{ lat: marker.lat, lng: marker.lng }}
                         icon={
                             {

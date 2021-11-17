@@ -39,6 +39,11 @@ const resolvers = {
                                     .populate('reviews')
 
         return toilets;
+    },
+    toiletsByZip: async (parent, args) => {
+        const toilets = await Toilet.find({zipcode: args.zipcode})
+                                    .populate('reviews')
+        return toilets;
     }
   },
   Mutation: {
@@ -95,6 +100,7 @@ const resolvers = {
     addReview: async (parent, args, context) => {
 
         if (context.user) {
+            
             const review = await Review.create({username: context.user.username, ...args})
 
             const updatedUser = await User.findOneAndUpdate(
@@ -116,8 +122,9 @@ const resolvers = {
     },
     updateReview: async (parent, args, context) => {
         if (context.user) {
+            
             const updatedReview = Review.findOneAndUpdate(
-                { coordinates: args.coordinates },
+                { coordinates: args.coordinates},
                 {...args},
                 {new: true}
                 )
@@ -128,7 +135,7 @@ const resolvers = {
     },
     createNewToilet: async (parent, args, context) => {
 
-        const {zipcode, coordinates, overallRating, genderNeutral, cleanliness, changingTable, handicapAccessible, toiletPaper, keys, comment} = args
+        const {zipcode, coordinates, lng, lat, overallRating, genderNeutral, cleanliness, changingTable, handicapAccessible, toiletPaper, keys, comment} = args
 
         if (context.user) {
             const review = await Review.create({username: context.user.username, coordinates, overallRating, genderNeutral, cleanliness, changingTable, handicapAccessible, toiletPaper, keys, comment})
@@ -140,7 +147,7 @@ const resolvers = {
                 )        
 
             const newToilet = await Toilet.create(
-                { coordinates: coordinates, zipcode: zipcode, reviews: [review._id]}
+                { coordinates: coordinates, lng: lng, lat: lat, zipcode: zipcode, reviews: [review._id]}
             )
 
             return newToilet

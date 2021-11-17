@@ -26,6 +26,8 @@ const typeDefs = gql`
     type Toilet {
         _id: ID
         coordinates: String!
+        lng: String!
+        lat: String!
         zipcode: String!
         reviews: [Review]
     }
@@ -38,6 +40,7 @@ const typeDefs = gql`
         users: [User]
         user(username: String!): User
         toilets: [Toilet]
+        toiletsByZip(zipcode: String!): [Toilet]
         reviews: [Review]
         reviewsByUser(userId: ID!): User
         reviewsByToilet(coordinates: String!): Toilet
@@ -46,7 +49,7 @@ const typeDefs = gql`
         addUser(firstName: String!, lastName: String!, email: String!, username: String!, password: String!): Auth
         updateUser(firstName: String, lastName: String, email: String, username: String): User
         updatePassword(password: String!): User
-        createNewToilet(coordinates: String!, zipcode: String!, overallRating: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Toilet
+        createNewToilet(coordinates: String!, zipcode: String!, lng: String!, lat: String, overallRating: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Toilet
         addReview(overallRating: String!, coordinates: String!, genderNeutral: String!, cleanliness: String!, changingTable: String!, handicapAccessible: String!, toiletPaper: String!, keys: String!, comment: String!): Review
         updateReview(overallRating: String, coordinates: String, genderNeutral: String, cleanliness: String, changingTable: String, handicapAccessible: String, toiletPaper: String, keys: String, comment: String): Review
         login(email: String!, password: String!): Auth
