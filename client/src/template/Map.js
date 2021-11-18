@@ -137,7 +137,12 @@ const Map = () => {
                     <div>
                         <h2>Toilet</h2>
                         <h3>{selected.address}</h3>
-                        <Link to="/add">Add A Review!</Link>
+                        <div>
+                        <Link to="/reviews">View Reviews!</Link>
+                        </div>
+                        <div>
+                        <Link to="/add">Leave A Review!</Link>
+                        </div>
                     </div>
                 </InfoWindow>) : null}
             </GoogleMap>
