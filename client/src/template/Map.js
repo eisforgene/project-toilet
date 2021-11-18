@@ -219,6 +219,7 @@ const Map = ({zipcode, setZipcode, selected, setSelected}) => {
             }}>
             <ComboboxInput 
                 value={value} 
+                className="form-control form-control-lg"
                 onChange={(e) => {
                     setValue(e.target.value)
                     }}

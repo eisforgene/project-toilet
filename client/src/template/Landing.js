@@ -19,24 +19,24 @@ const Landing = () => {
                 {/*Location Search*/}
                 <div className="row">
                   <div className="col">
-                    <input
+                    {/* <input
                       className="form-control form-control-lg"
                       id="zipcode" // changed id to zipcode and type to 
                       type="input"
                       placeholder="Enter zipcode here"
-                    />{" "}
+                    />{" "} */}
                     {/*can be included: data-sb-validations="required,email"*/}
                     {/* <div className="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
                                         <div className="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div> */}
                   </div>
                   <div className="col-auto">
-                    <button
+                    {/* <button
                       className="btn btn-primary btn-lg"
                       id="submitButton"
                       type="submit"
                     >
                       Submit
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               {/* </form> */}

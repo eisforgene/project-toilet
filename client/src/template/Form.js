@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import {  Form, FormGroup, Label, Input, Button} from 'reactstrap'
 import { ADDREVIEW } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
-import { Link, Redirect } from 'react-router-dom';
-import Auth from '../utils/auth'
+import { Redirect, useHistory } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 const ReviewForm = ({selected}) => {
 
 const [addReview, {error}] = useMutation(ADDREVIEW)
+
+const history = useHistory();
 
     const [formState, setFormState] = useState({ overallRating: '3', genderNeutral: 'No', cleanliness: '3',  changingTable: 'No', handicapAccessible: '3', toiletPaper: 'Yes', keys: 'No', comment: '' });
 
@@ -44,9 +46,10 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
         console.log(coordinates);
 
         try {
-            addReview({
+           await  addReview({
                     variables: { coordinates: coordinates, ...formState}
                 })
+            return history.push('/')
             } catch (e) {
                 console.error(e)
                 console.log(error)
