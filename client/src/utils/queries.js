@@ -1,19 +1,15 @@
 import { gql } from "@apollo/client"
 
-export const QUERY_ME = gql`
-{
-    me{
-        _id
-        username
-        email
-        saveBooks{
-            bookId
-            title
-            authors
-            image
-            description
-            link
-        }
+export const QUERY_TOILETS = gql`
+
+    query getToilets($zipcode: String!) {
+        toiletsByZip(zipcode: $zipcode) {
+            _id
+            coordinates
+            address
+            lng
+            lat
+            zipcode
+            }
     }
-}
 `;

@@ -14,5 +14,10 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^6.3.0"
+  },
+  "dependencies": {
+    "apollo-link": "^1.2.14",
+    "apollo-link-error": "^1.1.13",
+    "react-dotenv": "^0.1.3"
   }
 }

@@ -11327,6 +11327,12 @@ header.masthead h1, header.masthead .h1 {
   min-height: 30rem;
   background-size: cover;
 }
+
+.nav-item a{
+  text-decoration: none;
+  color:inherit;
+}
+
 @media (min-width: 768px) {
   .showcase .showcase-text {
     padding: 7rem;
@@ -11363,17 +11369,23 @@ header.masthead h1, header.masthead .h1 {
   left: 0;
   opacity: 0.5;
 }
-
-footer.footer {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+.page-container {
+  position: relative;
+  min-height: 100vh;
 }
 
-.ml-auto,
-.mx-auto {
-  margin-left: auto !important;
+.content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
 }
 
-.form-group {
-  margin-bottom: 1rem;
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;   
+}
+
+.form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
 }
