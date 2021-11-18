@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { setContext } from '@apollo/client/link/context';
 import "./App.css";
 import Navbar from "./template/Navbar";
@@ -7,7 +7,7 @@ import Sample from "./template/Sample";
 import Footer from "./template/Footer";
 import Signup from "./template/Signup";
 import Login from "./template/Login";
-import ToiletForm from "./template/Form";
+import ReviewForm from "./template/Form";
 import Map from './template/Map'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { onError } from 'apollo-link-error';
@@ -57,16 +57,21 @@ const client = new ApolloClient({
 // };
 
 function App() {
+
+  const [zipcode, setZipcode] = useState('90027')
+  const [selected, setSelected] = useState(null)
+
   return (
     <ApolloProvider client={client}>
       <Router>
       <div className="page-container">
       <div className="content-wrap">
         <Navbar />
+
         <Switch>
-          <Route exact path="/">
-            <Landing />
-            <Map />
+          <Route exact path="/" >
+            <Landing  />
+            <Map zipcode={zipcode} setZipcode={setZipcode} selected={selected} setSelected={setSelected}/>
           </Route>
           <Route exact path="/signup">
             <Signup />
@@ -75,7 +80,7 @@ function App() {
             <Login />
           </Route>
           <Route exact path="/add">
-            <ToiletForm />
+            <ReviewForm selected={selected} />
           </Route>
           <Route path="*" component={Home} />
         </Switch>
