@@ -3,7 +3,7 @@ import { setContext } from '@apollo/client/link/context';
 import "./App.css";
 import Navbar from "./template/Navbar";
 import Landing from "./template/Landing";
-import Sample from "./template/Sample";
+// import Sample from "./template/Sample";
 import Footer from "./template/Footer";
 import Signup from "./template/Signup";
 import Login from "./template/Login";
