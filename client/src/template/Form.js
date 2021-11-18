@@ -17,7 +17,6 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
         coordinates = selected.lat + 'X' + selected.lng 
     }
 
-    console.log(coordinates)
 
 // update state based on form input changes
         const handleChange = async event => {
