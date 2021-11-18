@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import {  Form, FormGroup, Label, Input, Button} from 'reactstrap'
 import { ADDREVIEW } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 const ReviewForm = ({selected}) => {
 
 const [addReview, {error}] = useMutation(ADDREVIEW)
 
-// const history = useHistory();
+const history = useHistory();
 
     const [formState, setFormState] = useState({ overallRating: '3', genderNeutral: 'No', cleanliness: '3',  changingTable: 'No', handicapAccessible: '3', toiletPaper: 'Yes', keys: 'No', comment: '' });
 
@@ -48,7 +48,7 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
            await  addReview({
                     variables: { coordinates: coordinates, ...formState}
                 })
-            // return history.push('/')
+            return history.push('/')
             } catch (e) {
                 console.error(e)
                 console.log(error)
@@ -75,9 +75,9 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
 
     return(
         <>
-        {!Auth.loggedIn && <Redirect to='/' /> }
-        {Auth.loggedIn && !selected && <Redirect to='/' />}
-        {Auth.loggedIn() && selected && (
+        {/* {!Auth.loggedIn && <Redirect to='/' /> } */}
+        {/* {Auth.loggedIn && !selected && <Redirect to='/' />} */}
+        {/* {Auth.loggedIn() && selected && ( */}
         <>
         <h1>Form</h1>
         <Form onSubmit={handleFormSubmit}>
@@ -146,7 +146,6 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
            <Button>Submit</Button>
         </Form> 
         </>
-        )}
         </>
     )
 }
