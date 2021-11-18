@@ -44,9 +44,13 @@ const center = {
 
 
 
-const Map = () => {
+const Map = ({zipcode, setZipcode, selected, setSelected}) => {
 
-    const [zipcode, setZipcode] = useState('90027')
+    // const [zipcode, setZipcode] = useState('90027')
+    // const [selected, setSelected] = useState(null)
+    const [markers, setMarkers] = useState([]);
+    
+
     const {loading, data, refetch} = useQuery(QUERY_TOILETS, {variables: {zipcode}})
 
     useEffect(() => {
@@ -77,11 +81,7 @@ const Map = () => {
         libraries
     });
     
-    
 
-    const [markers, setMarkers] = useState([]);
-   
-    const [selected, setSelected] = useState(null)
 
     // const onMapClick = React.useCallback((event) => {
     //     setMarkers((current) => [

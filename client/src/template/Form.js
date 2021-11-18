@@ -4,12 +4,14 @@ import { ADDREVIEW } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth'
 
-const ReviewForm = () => {
+const ReviewForm = ({selected}) => {
 
 const [addReview, {error}] = useMutation(ADDREVIEW)
 
     const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '', cleanliness: '', handicapAccessible: '', toiletPaper: '', keys: '', comment: '' });
 
+    const coordinates = selected.lat + 'X' + selected.lng 
+    console.log(coordinates)
 
 // update state based on form input changes
         const handleChange = async event => {
@@ -32,21 +34,31 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
             return false;
         }
 
-        navigator.geolocation.getCurrentPosition(position => {
-        
-            const { latitude, longitude } = position.coords
 
-             const coordinates = latitude + 'X' + longitude 
-            try {
+        try {
             addReview({
                     variables: { coordinates: coordinates, ...formState}
                 })
             } catch (e) {
                 console.error(e)
                 console.log(error)
-            }
+        }
 
-        })
+        // navigator.geolocation.getCurrentPosition(position => {
+        
+        //     const { latitude, longitude } = position.coords
+
+        //      const coordinates = latitude + 'X' + longitude 
+            // try {
+            // addReview({
+            //         variables: { coordinates: coordinates, ...formState}
+            //     })
+            // } catch (e) {
+            //     console.error(e)
+            //     console.log(error)
+            // }
+
+        // })
 
     }
 
