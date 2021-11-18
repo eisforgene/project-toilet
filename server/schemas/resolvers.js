@@ -135,7 +135,7 @@ const resolvers = {
     },
     createNewToilet: async (parent, args, context) => {
 
-        const {zipcode, coordinates, lng, lat, overallRating, genderNeutral, cleanliness, changingTable, handicapAccessible, toiletPaper, keys, comment} = args
+        const {zipcode, address, coordinates, lng, lat, overallRating, genderNeutral, cleanliness, changingTable, handicapAccessible, toiletPaper, keys, comment} = args
 
         if (context.user) {
             const review = await Review.create({username: context.user.username, coordinates, overallRating, genderNeutral, cleanliness, changingTable, handicapAccessible, toiletPaper, keys, comment})
@@ -147,7 +147,7 @@ const resolvers = {
                 )        
 
             const newToilet = await Toilet.create(
-                { coordinates: coordinates, lng: lng, lat: lat, zipcode: zipcode, reviews: [review._id]}
+                { coordinates: coordinates, address: address, lng: lng, lat: lat, zipcode: zipcode, reviews: [review._id]}
             )
 
             return newToilet

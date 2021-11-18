@@ -7,6 +7,10 @@ const toiletSchema = new Schema({
         trim: true,
         unique: true,
     },
+    address: {
+        type: String,
+        required: true
+    },
     lng: {
         type: String,
         required: true,
