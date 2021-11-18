@@ -13,6 +13,9 @@ To install the program, you will need to install the following packages:
 <li>run preloaded npm commands to test the program. </li>
 </ol>
 
+## Images 
+<img src="./client/public/images/Screenshot.jpg"/>
+
 ## Usage
 screen shots of the program will be provided.
 ## Deployed Link 
@@ -49,7 +52,7 @@ screen shots of the program will be provided.
 
 MIT License
 
-Copyright (c) [2021] [Find a Potty]
+Copyright (c) [2021] [SOS Toilet]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
