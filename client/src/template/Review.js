@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_TOILETS } from '../utils/queries';
+
 // import { Link } from 'react-router-dom';
 
 const DisplayReview = () => {
@@ -20,21 +21,29 @@ const DisplayReview = () => {
     return(
         <div>
             <h1>
-                Display Reviews
+                Toilet Reviews
             </h1>
-
-            {/* <pre>
-                {JSON.stringify(toilets, null, 2)}
-            </pre> */}
 
             {toilets.map(toilet => {
                 return (
                     <div>
-                        <h2>Address: {toilet.address}</h2>
-                        <p>zipcode: {toilet.zipcode}</p>
+                        <h3>Address: {toilet.address}</h3>
+                         
+                        <h5>Coordinates: {toilet.coordinates}</h5>
+
+                        <h5>Zipcode: {toilet.zipcode}</h5>
+                        
+
+                        {/* <h2>Address: {toilet.address}</h2>
+                        <p>zipcode: {toilet.zipcode}</p> */}
                     </div>
                 );
             })}
+
+            {/* <pre>
+                {JSON.stringify(toilets, null, 2)}
+            </pre> */}
+            
         </div>
     )
 }
