@@ -9,7 +9,7 @@ const ReviewForm = ({selected}) => {
 
 const [addReview, {error}] = useMutation(ADDREVIEW)
 
-const history = useHistory();
+// const history = useHistory();
 
     const [formState, setFormState] = useState({ overallRating: '3', genderNeutral: 'No', cleanliness: '3',  changingTable: 'No', handicapAccessible: '3', toiletPaper: 'Yes', keys: 'No', comment: '' });
 
@@ -48,7 +48,7 @@ const history = useHistory();
            await  addReview({
                     variables: { coordinates: coordinates, ...formState}
                 })
-            return history.push('/')
+            // return history.push('/')
             } catch (e) {
                 console.error(e)
                 console.log(error)

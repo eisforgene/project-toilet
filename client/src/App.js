@@ -79,8 +79,7 @@ function App() {
           <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path ="/review">
-            <DisplayReview />
+          <Route exact path ="/review" component={DisplayReview}>
             </Route>
           <Route exact path="/add">
             <ReviewForm selected={selected} />
