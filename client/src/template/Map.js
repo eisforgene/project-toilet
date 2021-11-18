@@ -7,7 +7,7 @@ import {
     Marker,
     InfoWindow
 } from '@react-google-maps/api'
-
+import { Link } from 'react-router-dom';
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -62,7 +62,8 @@ const Map = () => {
                     ...current,
                     {
                     lng,
-                    lat
+                    lat,
+                    address: datum.address
                 }
                 ])
             })
@@ -116,7 +117,7 @@ const Map = () => {
 
                 {markers.map((marker) => (
                     <Marker
-                        key={marker.lng+marker.lat}
+                        key={marker.address}
                         position={{ lat: marker.lat, lng: marker.lng }}
                         icon={
                             {
@@ -134,7 +135,14 @@ const Map = () => {
 
                 {selected ? (<InfoWindow position={{ lat: selected.lat, lng: selected.lng }} onCloseClick={() => { setSelected(null) }}>
                     <div>
-                        <h2>This is a Toilet</h2>
+                        <h2>Toilet</h2>
+                        <h3>{selected.address}</h3>
+                        <div>
+                        <Link to="/reviews">View Reviews!</Link>
+                        </div>
+                        <div>
+                        <Link to="/add">Leave A Review!</Link>
+                        </div>
                     </div>
                 </InfoWindow>) : null}
             </GoogleMap>
