@@ -1,5 +1,5 @@
 import React from "react";
-
+import { setContext } from '@apollo/client/link/context';
 import "./App.css";
 import Navbar from "./template/Navbar";
 import Landing from "./template/Landing";
@@ -60,12 +60,14 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+      <div className="page-container">
+      <div className="content-wrap">
         <Navbar />
-        <Landing />
-        <Map />
-
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/">
+            <Landing />
+            <Map />
+          </Route>
           <Route exact path="/signup">
             <Signup />
           </Route>
@@ -75,10 +77,12 @@ function App() {
           <Route exact path="/add">
             <ToiletForm />
           </Route>
-          <Route path="*" component={Home}/>
+          <Route path="*" component={Home} />
         </Switch>
-        <Sample />
+        </div>
+        {/* <Sample /> */}
         <Footer />
+        </div>
       </Router>
     </ApolloProvider>
   );
