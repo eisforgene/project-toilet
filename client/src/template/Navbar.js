@@ -20,7 +20,11 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item mx-0 mx-lg-1">
+           
+
+            {Auth.loggedIn() ? (
+              <>
+              {/* <li className="nav-item mx-0 mx-lg-1">
               <Link
                 to="/add"
                 className="nav-link py-3 px-0 px-lg-3 rounded text-danger border"
@@ -28,10 +32,7 @@ const Navbar = () => {
               >
                 + Add New Restroom
               </Link>
-            </li>
-
-            {Auth.loggedIn() ? (
-              <>
+            </li> */}
                 <li className="nav-item mx-0 mx-lg-1">
                   <Link
                     className="nav-link py-3 px-0 px-lg-3 rounded border"
