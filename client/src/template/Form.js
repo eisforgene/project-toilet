@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {  Form, FormGroup, Label, Input, Button} from 'reactstrap'
 import { ADDREVIEW } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
+import { Link, Redirect } from 'react-router-dom';
 import Auth from '../utils/auth'
 
 const ReviewForm = ({selected}) => {
@@ -10,7 +11,12 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
 
     const [formState, setFormState] = useState({ overallRating: '', genderNeutral: '', cleanliness: '', handicapAccessible: '', toiletPaper: '', keys: '', comment: '' });
 
-    const coordinates = selected.lat + 'X' + selected.lng 
+    let coordinates = ''
+
+    if (selected) {
+        coordinates = selected.lat + 'X' + selected.lng 
+    }
+
     console.log(coordinates)
 
 // update state based on form input changes
@@ -65,8 +71,11 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
 
     return(
         <>
+        {!Auth.loggedIn && <Redirect to='/' /> }
+        {Auth.loggedIn && !selected && <Redirect to='/' />}
+        {Auth.loggedIn() && selected && (
+        <>
         <h1>Form</h1>
- 
         <Form onSubmit={handleFormSubmit}>
             <FormGroup>
                 <Label for="overallRating">Overall Score?</Label>
@@ -132,7 +141,8 @@ const [addReview, {error}] = useMutation(ADDREVIEW)
             </FormGroup>
            <Button>Submit</Button>
         </Form> 
-        
+        </>
+        )}
         </>
     )
 }
