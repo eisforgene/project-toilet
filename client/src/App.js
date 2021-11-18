@@ -10,12 +10,12 @@ import Login from "./template/Login";
 import ReviewForm from "./template/Form";
 import Map from './template/Map'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import Home from "./template/Home"
 
-// import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     console.log('graphQLErrors', graphQLErrors);
@@ -41,6 +41,7 @@ const authLink = setContext((_, { headers }) => {
 
 const link = ApolloLink.from([errorLink, httpLink])
 
+
 const client = new ApolloClient({
   link: authLink.concat(link),
   cache: new InMemoryCache(),
@@ -63,12 +64,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+      <div className="page-container">
+      <div className="content-wrap">
         <Navbar />
-        
 
         <Switch>
           <Route exact path="/" >
-            <Home  />
+            <Landing  />
             <Map zipcode={zipcode} setZipcode={setZipcode} selected={selected} setSelected={setSelected}/>
           </Route>
           <Route exact path="/signup">
@@ -80,10 +82,12 @@ function App() {
           <Route exact path="/add">
             <ReviewForm selected={selected} />
           </Route>
-          <Route path="*" component={Home}/>
+          <Route path="*" component={Home} />
         </Switch>
-        <Sample />
+        </div>
+        {/* <Sample /> */}
         <Footer />
+        </div>
       </Router>
     </ApolloProvider>
   );
