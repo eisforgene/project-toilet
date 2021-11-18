@@ -8,6 +8,8 @@ db.once('open', async () => {
     const toilets = await Toilet.insertMany([
         {zipcode: '90027', coordinates: '34.101912X-118.302526', lat:'34.101912', lng: '-118.30252' },
         {zipcode: '90027', coordinates: '34.099943X-118.297707', lat: '34.099943', lng: '-118.297707'},
+        {zipcode: '94941', coordinates: '37.875146X-122.531700' , lat: '37.875146', lng: '-122.531700'},
+        {zipcode: '94941', coordinates: '37.880579X-122.540161', lat: '37.880579', lng: '-122.540161'}
     ]);
 
     console.log('toilets seeded');
