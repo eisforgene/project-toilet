@@ -37,6 +37,15 @@ const Navbar = () => {
                   <Link
                     className="nav-link py-3 px-0 px-lg-3 rounded border"
                     data-mdb-ripple-color="light"
+                    href="/"
+                  >
+                      Display Reviews
+                  </Link>
+                </li>
+                <li className="nav-item mx-0 mx-lg-1">
+                  <Link
+                    className="nav-link py-3 px-0 px-lg-3 rounded border"
+                    data-mdb-ripple-color="light"
                     onClick={logout}
                     href="/"
                   >
