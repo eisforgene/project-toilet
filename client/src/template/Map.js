@@ -55,10 +55,11 @@ const Map = ({zipcode, setZipcode, selected, setSelected}) => {
 
     useEffect(() => {
         
-        setMarkers([])
+   
         if (data) {
+            setMarkers([])
             const {toiletsByZip} = data
-            console.log(data.toiletsByZip)
+            console.log(toiletsByZip)
             toiletsByZip.map((datum) => {
               const lng = parseFloat(datum.lng)
                 const lat = parseFloat(datum.lat)
@@ -81,7 +82,10 @@ const Map = ({zipcode, setZipcode, selected, setSelected}) => {
         libraries
     });
     
-
+    // const updateZipcode = (zip) => {
+    //     setZipcode(zip)
+    //     refetch({zip})
+    // }
 
     // const onMapClick = React.useCallback((event) => {
     //     setMarkers((current) => [
@@ -154,10 +158,7 @@ const Map = ({zipcode, setZipcode, selected, setSelected}) => {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
 
-                panTo({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                });
+               
                 
                 fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${env.GOOGLE_MAPS_API_KEY}`).then((response) => {
                     
@@ -165,9 +166,15 @@ const Map = ({zipcode, setZipcode, selected, setSelected}) => {
                     response.json().then((data) => {
                         const zip = data.results[0].address_components[6].long_name
                         setZipcode(zip);
+                        refetch({zipcode: zip})
+                    });
+
+                    panTo({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
                     });
                 }
-                refetch({zipcode})
+                
                 
                 })
             }, () => null)
@@ -208,14 +215,20 @@ const Map = ({zipcode, setZipcode, selected, setSelected}) => {
             try {
                 const results = await getGeocode({address});
                 const zip = await getZipCode(results[0], false)
+                if (zip) {
+             
                 setZipcode(zip)
+                refetch({zipcode: zip})
                 const { lat, lng } = await getLatLng(results[0])
+               
                 panTo({lat, lng})
-                refetch({zipcode})
+                }
+
+               
             } catch(error) {
                 console.log('error!')
             }
-            console.log(address)
+
             }}>
             <ComboboxInput 
                 value={value} 
