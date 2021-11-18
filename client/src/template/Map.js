@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import env from 'react-dotenv';
 import mapStyles from '../mapStyles';
 import {
@@ -46,10 +46,12 @@ const center = {
 
 const Map = () => {
 
-
-    const {loading, data} = useQuery(QUERY_TOILETS, {variables: {zipcode: '90027'}})
+    const [zipcode, setZipcode] = useState('90027')
+    const {loading, data, refetch} = useQuery(QUERY_TOILETS, {variables: {zipcode}})
 
     useEffect(() => {
+        
+        setMarkers([])
         if (data) {
             const {toiletsByZip} = data
             console.log(data.toiletsByZip)
@@ -76,9 +78,9 @@ const Map = () => {
     
     
 
-    const [markers, setMarkers] = React.useState([]);
+    const [markers, setMarkers] = useState([]);
    
-    const [selected, setSelected] = React.useState(null)
+    const [selected, setSelected] = useState(null)
 
     // const onMapClick = React.useCallback((event) => {
     //     setMarkers((current) => [
@@ -99,7 +101,9 @@ const Map = () => {
     const panTo = React.useCallback(({ lat, lng }) => {
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(12);
+        
     }, [])
+
 
     if (loadError) return 'Error Loading maps';
     if (!isLoaded) return "Loading Maps";
@@ -141,10 +145,23 @@ const Map = () => {
         return <button className="locate" onClick={() => {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
+
                 panTo({
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 });
+                
+                fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${env.GOOGLE_MAPS_API_KEY}`).then((response) => {
+                    
+                if (response.ok) {
+                    response.json().then((data) => {
+                        const zip = data.results[0].address_components[6].long_name
+                        setZipcode(zip);
+                    });
+                    
+                }
+                
+                })
             }, () => null)
         }} 
         >
@@ -182,11 +199,11 @@ const Map = () => {
 
             try {
                 const results = await getGeocode({address});
-                const zipcode = await getZipCode(results[0], false)
+                const zip = await getZipCode(results[0], false)
+                setZipcode(zip)
                 const { lat, lng } = await getLatLng(results[0])
                 panTo({lat, lng})
-                
-
+                refetch({zipcode})
             } catch(error) {
                 console.log('error!')
             }
