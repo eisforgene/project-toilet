@@ -11327,6 +11327,12 @@ header.masthead h1, header.masthead .h1 {
   min-height: 30rem;
   background-size: cover;
 }
+
+.nav-item a{
+  text-decoration: none;
+  color:inherit;
+}
+
 @media (min-width: 768px) {
   .showcase .showcase-text {
     padding: 7rem;
