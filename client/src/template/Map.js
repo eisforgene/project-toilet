@@ -157,6 +157,7 @@ const Map = () => {
                     response.json().then((data) => {
                         const zip = data.results[0].address_components[6].long_name
                         setZipcode(zip);
+                        refetch({zipcode})
                     });
                     
                 }
