@@ -44,10 +44,10 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item mx-0 mx-lg-1">
                   <Link
-                    to="/review"
+                    to="/allReviews"
                     className="nav-link py-3 px-0 px-lg-3 rounded border"
                     data-mdb-ripple-color="light"
-                    href="/review"
+                    href="/allReviews"
                   >
                     Display Reviews
                   </Link>
