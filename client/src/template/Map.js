@@ -142,7 +142,7 @@ const Map = ({zipcode, setZipcode, selected, setSelected}) => {
                         <h2>Toilet</h2>
                         <h3>{selected.address}</h3>
                         <div>
-                        <Link to="/reviews">View Reviews!</Link>
+                        <Link to="/specificReviews">View Reviews!</Link>
                         </div>
                         <div>
                         <Link to="/add">Leave A Review!</Link>

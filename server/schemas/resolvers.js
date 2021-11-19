@@ -44,6 +44,11 @@ const resolvers = {
         const toilets = await Toilet.find({zipcode: args.zipcode})
                                     .populate('reviews')
         return toilets;
+    },
+    toiletByAddress: async (parent, args) => {
+        const toilet = await Toilet.findOne({address: args.address})
+                                    .populate('reviews')
+        return toilet
     }
   },
   Mutation: {

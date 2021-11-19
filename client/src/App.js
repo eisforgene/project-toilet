@@ -13,8 +13,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import Home from "./template/Home"
-import DisplayReview from "./template/Review";
+import DisplayReview from "./template/allReviews";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import SpecificReviews from "./template/SpecificReviews";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -79,7 +80,11 @@ function App() {
           <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path ="/review" component={DisplayReview}>
+          <Route exact path ="/allReviews">
+              <DisplayReview></DisplayReview>
+            </Route>
+            <Route exact path ="/specificReviews">
+              <SpecificReviews selected={selected}/>
             </Route>
           <Route exact path="/add">
             <ReviewForm selected={selected} />
