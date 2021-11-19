@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {  Form, FormGroup, Label, Input, Button} from 'reactstrap'
 import { ADDREVIEW } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 const ReviewForm = ({selected}) => {
@@ -75,9 +75,9 @@ const history = useHistory();
 
     return(
         <>
-        {!Auth.loggedIn && <Redirect to='/' /> }
-        {Auth.loggedIn && !selected && <Redirect to='/' />}
-        {Auth.loggedIn() && selected && (
+        {/* {!Auth.loggedIn && <Redirect to='/' /> } */}
+        {/* {Auth.loggedIn && !selected && <Redirect to='/' />} */}
+        {/* {Auth.loggedIn() && selected && ( */}
         <>
         <h1>Form</h1>
         <Form onSubmit={handleFormSubmit}>
@@ -146,7 +146,6 @@ const history = useHistory();
            <Button>Submit</Button>
         </Form> 
         </>
-        )}
         </>
     )
 }

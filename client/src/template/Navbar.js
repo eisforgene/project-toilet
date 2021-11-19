@@ -1,10 +1,10 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Navbar = () => {
-  const logout = event => {
+  const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
@@ -13,26 +13,45 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light static-top">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          <img src="https://img.icons8.com/emoji/48/000000/toilet-emoj.png" alt="logo" />          Toilet SOS
+          <img
+            src="https://img.icons8.com/emoji/48/000000/toilet-emoj.png"
+            alt="logo"
+          />{" "}
+          Toilet SOS
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-           
-
             {Auth.loggedIn() ? (
               <>
-              <li className="nav-item mx-0 mx-lg-1">
-              <Link
-                to="/add"
-                className="nav-link py-3 px-0 px-lg-3 rounded text-danger border"
-                href="/add"
-              >
-                + Add New Restroom
-              </Link>
-            </li>
+                <li className="nav-item mx-0 mx-lg-1">
+                  <Link
+                    to="/add"
+                    className="nav-link py-3 px-0 px-lg-3 rounded text-danger border"
+                  >
+                    + Add New Restroom
+                  </Link>
+                </li>
+                <li className="nav-item mx-0 mx-lg-1">
+                  <Link
+                    to="/review"
+                    className="nav-link py-3 px-0 px-lg-3 rounded border"
+                    data-mdb-ripple-color="light"
+                    href="/review"
+                  >
+                    Display Reviews
+                  </Link>
+                </li>
                 <li className="nav-item mx-0 mx-lg-1">
                   <Link
                     className="nav-link py-3 px-0 px-lg-3 rounded border"
@@ -40,7 +59,7 @@ const Navbar = () => {
                     onClick={logout}
                     href="/"
                   >
-                      Logout
+                    Logout
                   </Link>
                 </li>
               </>
