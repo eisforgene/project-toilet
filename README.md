@@ -8,7 +8,7 @@ This is a program that will find a potty in a given location. You will also have
 
 To install the program, you will need to install the following packages:
 <ol>
-<li>run npm itit -y to install the package.json file. </li>
+<li>run npm init -y to install the package.json file. </li>
 <li>run npm install to install all the packages and dependencies. </li>
 <li>run preloaded npm commands to test the program. </li>
 </ol>
@@ -25,12 +25,12 @@ screen shots of the program will be provided.
 <li>  Eugene </li>
 <ol> 
 <li><a href="https://github.com/eisforgene" > GitHub </a> </li> 
-<li> <a href="mailto:ieugenelee@gmail.com">Email  </a> </li></ol>
+<li> <a href="mailto:ieugenelee@gmail.com"> Email  </a> </li></ol>
 
 <li> Megan </li>
  <ol> 
  <li><a href="https://github.com/megwatson88"> GitHub </a> </li>
- <li> <a href="mailto:megan.campbell.1988@gmail.com">Email </a></li>
+ <li> <a href="mailto:megan.campbell.1988@gmail.com"> Email </a></li>
  </ol>
 
 <li> Anthony</li>
@@ -42,7 +42,7 @@ screen shots of the program will be provided.
 <li>  Daphne </li>
 <ol> 
 <li> <a href="https://github.com/daphne1014"> GitHub </a></li>
-<li> <a href="mailto:daphnesong1014@gmail.com">Email </a> </li>
+<li> <a href="mailto:daphnesong1014@gmail.com"> Email </a> </li>
 </ol>
 </ul>
 
