@@ -16,6 +16,7 @@ import Home from "./template/Home"
 import DisplayReview from "./template/allReviews";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import SpecificReviews from "./template/SpecificReviews";
+import AddToilet from "./template/AddToilet";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -88,6 +89,9 @@ function App() {
             </Route>
           <Route exact path="/add">
             <ReviewForm selected={selected} />
+          </Route>
+          <Route exact path="/addToilet">
+            <AddToilet zicpode={zipcode} setZipcode={setZipcode} />
           </Route>
           <Route path="*" component={Home} />
         </Switch>
