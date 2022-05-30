@@ -18,8 +18,7 @@ To install the program, you will need to install the following packages:
 
 ## Usage
 screen shots of the program will be provided.
-## Deployed Link 
- Heroku Deployed Link: project-toilet.herokuapp.com
+
 ## Contributing Members 
 <ul> 
 <li>  Eugene </li>
